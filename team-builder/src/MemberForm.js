@@ -1,4 +1,29 @@
 import React, {useState} from 'react';
+import styled from 'styled-components';
+
+const SubmitButton = styled.button`
+    background-color: transparent;
+    color: dodgerblue;
+    font-weight: bold;
+    border-radius: 10px;
+    border: 2px solid lightseagreen;
+    padding: 1%
+    margin: 2%;
+    &:hover {
+        background-color: dodgerblue;
+        color: white;
+    }
+`;
+const Section = styled.section`
+    color: lightseagreen;
+    font-weight: bold;
+    padding: .5%;
+`;
+const TeamForm = styled.form`
+    width: 35%;
+    margin: 0 auto;
+    border: 2px solid lightseagreen;
+`;
 
 const MemberForm = props => {
     const [member, setMember] = useState({
@@ -11,13 +36,13 @@ const MemberForm = props => {
     };
     const submitForm = event => {
         event.preventDefault();
-        props.addNewMembers(member);
         setMember({name: '', email: '', role: ''});
+        props.addNewMembers(member);
     };
 
     return (
-        <form onSubmit={submitForm}>
-            <label htmlFor='name'>Name: </label>
+        <TeamForm onSubmit={submitForm}>
+            <label htmlFor='name'><Section>Name: </Section></label>
             <input 
             name='name'
             id='name'
@@ -27,7 +52,7 @@ const MemberForm = props => {
             value={member.name}
             /><br />
 
-            <label htmlFor='email'>Email: </label>
+            <label htmlFor='email'><Section>Email: </Section></label>
             <input 
             name='email'
             id='email'
@@ -37,7 +62,7 @@ const MemberForm = props => {
             value={member.email}
             /><br />
 
-            <label htmlFor='role'>Role: </label>
+            <label htmlFor='role'><Section>Role: </Section></label>
             <input 
             name='role'
             id='role'
@@ -47,8 +72,8 @@ const MemberForm = props => {
             value={member.role}
             /><br />
 
-            <button type='submit'>Add New Member</button>
-        </form>
+            <SubmitButton type='submit'>Add New Member</SubmitButton>
+        </TeamForm>
     );
 };
 
